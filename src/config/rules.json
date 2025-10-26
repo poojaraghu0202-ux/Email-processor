@@ -1,0 +1,114 @@
+{
+  "rules": [
+    {
+      "name": "Mark Important Emails",
+      "description": "Mark emails from boss as read and move to Important folder",
+      "predicate": "all",
+      "conditions": [
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "noreply@glassdoor.com"
+        },
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "Software Engineer"
+        },
+         {
+          "field": "received_date",
+          "predicate": "less_than_days",
+          "value": 7
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark_as_read"
+        },
+        {
+          "type": "move_message",
+          "parameters": {
+            "destination": "Inbox"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mark Assignment Emails",
+      "description": "Mark emails from boss as read and move to Important folder",
+      "predicate": "all",
+      "conditions": [
+        {
+          "field": "to",
+          "predicate": "contains",
+          "value": "testpoojaemail@gmail.com"
+        },
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "Assignment"
+        },
+         {
+          "field": "received_date",
+          "predicate": "less_than_days",
+          "value": 1
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark_as_read"
+        },
+        {
+          "type": "move_message",
+          "parameters": {
+            "destination": "Inbox"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Archive Old Newsletters",
+      "description": "Archive newsletters older than 30 days",
+      "predicate": "any",
+      "conditions": [
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "newsletter"
+        },
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "noreply"
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark_as_read"
+        }
+      ]
+    },
+    {
+      "name": "Glassdoor Jobs",
+      "description": "Organize recent project emails",
+      "predicate": "any",
+      "conditions": [
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "Software Engineer"
+        },
+        {
+          "field": "received_date",
+          "predicate": "less_than_days",
+          "value": 7
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark_as_unread"
+        }
+      ]
+    }
+  ]
+}
