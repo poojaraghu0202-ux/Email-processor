@@ -1,0 +1,34 @@
+# ============================================================================
+# EMAIL RULE PROCESSOR - REQUIREMENTS
+# ============================================================================
+
+# ============================================================================
+# CORE DEPENDENCIES 
+# ============================================================================
+
+# Google Gmail API
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+google-api-python-client==2.108.0
+
+# Database ORM
+sqlalchemy==2.0.23
+
+# Environment variables
+python-dotenv==1.0.0
+
+# ============================================================================
+# TESTING DEPENDENCIES
+# ============================================================================
+
+# Testing framework
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+
+# Time/date mocking for tests
+freezegun==1.4.0
+
+# Fake data generation for tests
+faker==20.1.0
+
