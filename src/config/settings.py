@@ -6,8 +6,8 @@ load_dotenv()
 
 # Project paths
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-CREDENTIALS_FILE = BASE_DIR / "credentials.json"
-TOKEN_FILE = BASE_DIR / "token.json"
+CREDENTIALS_FILE = Path(os.getenv('GMAIL_CREDENTIALS_PATH', BASE_DIR / "credentials.json"))
+TOKEN_FILE = Path(os.getenv('GMAIL_TOKEN_PATH', BASE_DIR / "token.json"))
 RULES_FILE = BASE_DIR / "src" / "config" / "rules.json"
 
 # Gmail API settings

@@ -1,6 +1,61 @@
 {
   "rules": [
     {
+      "name": "Mark Assignment Emails",
+      "description": "Mark emails from pooja as read and move to Inbox folder",
+      "predicate": "all",
+      "conditions": [
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "poojaraghu0202@gmail.com"
+        },
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "Assignment"
+        },
+         {
+          "field": "received_date",
+          "predicate": "less_than_days",
+          "value": 2
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark_as_read"
+        },
+        {
+          "type": "move_message",
+          "parameters": {
+            "destination": "Inbox"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Alert when access Token Email Received",
+      "description": "Alert when personal access token email is received",
+      "predicate": "any",
+      "conditions": [
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "personal access token"
+        },
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "no-reply@google.com"
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark_as_unread"
+        }
+      ]
+    },
+       {
       "name": "Mark Important Emails",
       "description": "Mark emails from boss as read and move to Important folder",
       "predicate": "all",
@@ -30,83 +85,6 @@
           "parameters": {
             "destination": "Inbox"
           }
-        }
-      ]
-    },
-    {
-      "name": "Mark Assignment Emails",
-      "description": "Mark emails from boss as read and move to Important folder",
-      "predicate": "all",
-      "conditions": [
-        {
-          "field": "to",
-          "predicate": "contains",
-          "value": "testpoojaemail@gmail.com"
-        },
-        {
-          "field": "subject",
-          "predicate": "contains",
-          "value": "Assignment"
-        },
-         {
-          "field": "received_date",
-          "predicate": "less_than_days",
-          "value": 1
-        }
-      ],
-      "actions": [
-        {
-          "type": "mark_as_read"
-        },
-        {
-          "type": "move_message",
-          "parameters": {
-            "destination": "Inbox"
-          }
-        }
-      ]
-    },
-    {
-      "name": "Archive Old Newsletters",
-      "description": "Archive newsletters older than 30 days",
-      "predicate": "any",
-      "conditions": [
-        {
-          "field": "subject",
-          "predicate": "contains",
-          "value": "newsletter"
-        },
-        {
-          "field": "from",
-          "predicate": "contains",
-          "value": "noreply"
-        }
-      ],
-      "actions": [
-        {
-          "type": "mark_as_read"
-        }
-      ]
-    },
-    {
-      "name": "Glassdoor Jobs",
-      "description": "Organize recent project emails",
-      "predicate": "any",
-      "conditions": [
-        {
-          "field": "subject",
-          "predicate": "contains",
-          "value": "Software Engineer"
-        },
-        {
-          "field": "received_date",
-          "predicate": "less_than_days",
-          "value": 7
-        }
-      ],
-      "actions": [
-        {
-          "type": "mark_as_unread"
         }
       ]
     }

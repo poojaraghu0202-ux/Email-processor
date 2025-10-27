@@ -45,6 +45,7 @@ def sample_email():
         'from': 'boss@company.com',
         'to': 'employee@company.com',
         'subject': 'Urgent: Project Update',
+        'labels': ['INBOX', 'IMPORTANT'],
 
         'received_date': datetime(2024, 1, 1, 10, 0, 0),
         'is_read': False
@@ -60,6 +61,7 @@ def old_email():
         'from': 'newsletter@example.com',
         'to': 'user@company.com',
         'subject': 'Weekly Newsletter',
+        'labels': ['INBOX', 'NEWSLETTER'],
         'received_date': datetime.now() - timedelta(days=365),
         'is_read': False,
     }

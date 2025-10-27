@@ -10,6 +10,7 @@ class MarkAsReadAction(Action):
     def execute(self, email_provider: Any, email: Dict) -> bool:
         try:
             result = email_provider.mark_as_read(email['id'])
+          
             if result:
                 logger.info(f"✓ Marked as read: {email['subject'][:50]}")
             return result

@@ -5,8 +5,8 @@ from sqlalchemy.orm import sessionmaker, Session
 from datetime import datetime
 import json
 
-from .email_info import Base, Email
-from .rule_execution import Base, RuleExecution
+from .email_info import Base as EmailBase, Email
+from .rule_execution import Base as RuleBase, RuleExecution
 from config.settings import DATABASE_URL
 from utils.logger import setup_logger
 
@@ -17,7 +17,8 @@ class EmailRepository:
     
     def __init__(self, database_url: str = DATABASE_URL):
         self.engine = create_engine(database_url, echo=False)
-        Base.metadata.create_all(self.engine)
+        EmailBase.metadata.create_all(self.engine)
+        RuleBase.metadata.create_all(self.engine)
         self.SessionLocal = sessionmaker(bind=self.engine)
         logger.info(f"Database initialized at {database_url}")
     
