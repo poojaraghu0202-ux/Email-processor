@@ -24,8 +24,8 @@ It allows users to define flexible rule conditions (like sender, subject, or age
 ```
 email-rule-processor/
 ├── src/
-│   ├── fetch_emails.py             # Script 1: Fetch emails from Gmail
-│   ├── process_emails.py           # Script 2: Apply rules to stored emails
+│   ├── fetch_emails_main.py             # Script 1: Fetch emails from Gmail
+│   ├── process_emails_main.py           # Script 2: Apply rules to stored emails
 │   ├── config/
 │   │   ├── settings.py             # Configuration management
 │   │   └── rules.json              # Rule definitions
