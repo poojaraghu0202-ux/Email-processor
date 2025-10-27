@@ -61,6 +61,126 @@ email-rule-processor/
 └── README.md
 ```
 
+## 🚀 Setup Instructions
+
+### Prerequisites
+
+- Python 3.8 or higher
+- Gmail account
+- Google Cloud Project with Gmail API enabled
+
+### 1. Clone Repository
+
+```bash
+git clone 
+cd email-rule-processor
+```
+
+### 2. Install Dependencies
+
+```bash
+# Install main dependencies
+pip install -r requirements.txt
+```
+
+### 3. Google Cloud Setup
+
+#### Step 1: Go to Google Cloud Console
+Visit: https://console.cloud.google.com
+
+#### Step 2: Create/Select Project
+Create a new project or select an existing one
+
+#### Step 3: Enable Gmail API
+1. Navigate to: **APIs & Services > Library**
+2. Search for "Gmail API"
+3. Click "Enable"
+
+#### Step 4: Create OAuth 2.0 Credentials
+1. Go to: **APIs & Services > Credentials**
+2. Click: **"Create Credentials" > "OAuth client ID"**
+3. Application type: **"Desktop app"**
+4. Name it: "Email Rule Processor"
+5. Click "Create"
+
+#### Step 5: Download Credentials
+1. Click the download icon next to your OAuth 2.0 Client ID
+2. Save the file as `credentials.json` in the project root directory
+
+### 4. Configure Rules
+
+Edit `src/config/rules.json` to define your email processing rules.
+
+Each rule has:
+- **name**: Unique rule identifier
+- **description**: Human-readable description
+- **predicate**: `"all"` (AND logic) or `"any"` (OR logic)
+- **conditions**: Array of conditions to match
+- **actions**: Array of actions to execute
+
+## 📖 Usage
+
+### Step 1: Fetch Emails
+
+Run this script first to authenticate and fetch emails:
+```bash
+python3 fetch_emails.py
+```
+
+**What happens:**
+1. Opens browser for Gmail OAuth authentication (first time only)
+2. You grant necessary permissions
+3. Fetches emails as configured in the fetch limit given in setting.py
+4. Stores emails in database
+5. Creates `token.json` for future authentication
+
+### Step 2: Process Emails
+
+Run the rule processor:
+```bash
+python3 process_emails.py
+```
+
+**What happens:**
+1. Loads rules from `src/config/rules.json`
+2. Authenticates with Gmail API
+3. Retrieves emails from database
+4. Evaluates each email against rules
+5. Executes actions for matching emails
+6. Logs results to database
+
+
+
+## 🏗️ Architecture
+
+### Design Patterns
+
+The application follows several key design patterns for maintainability and extensibility:
+
+#### 1. **Strategy Pattern** — Email Providers
+- Abstracts email provider implementations (Gmail, Zoho, Outlook)
+- Implemented in `src/providers/`
+
+#### 2. **Factory Pattern** — Component Creation
+- Creates conditions, actions, and providers dynamically
+- Centralizes object instantiation logic
+- Factory implementations:
+  - `src/providers/factory.py` — Provider factory
+  - `src/rules/conditions/factory.py` — Condition factory
+  - `src/rules/actions/factory.py` — Action factory
+
+#### 3. **Repository Pattern** — Data Access Layer
+- Abstracts database operations from business logic
+- Implemented in `src/database/email_datastore.py`
+
+#### 4. **Command Pattern** — Executable Actions
+- Encapsulates action as an object with a common interface
+- Implemented in `src/rules/actions/`
+
+
+
+
+
    
  
   
