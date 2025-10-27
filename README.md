@@ -3,35 +3,25 @@
 Email Rule Processor is a standalone Python application that integrates with the Gmail API to fetch, store, and process emails automatically based on configurable rules.
 It allows users to define flexible rule conditions (like sender, subject, or age) and execute actions such as marking emails as read/unread or moving them to specific labels.
 
-✨ Features
+## ✨ Features
 
-🔐 Gmail OAuth 2.0 Authentication — Secure authentication via Google’s official Python client
+- 🔐 **Gmail OAuth 2.0 Authentication** — Secure authentication via Google's official Python client
+- 📥 **Email Fetching** — Fetch emails from Gmail and store them in a relational database
+- ⚙️ **Rule-Based Processing** — Apply custom rules defined in JSON format
+- 🧩 **Flexible Conditions** — Supports string-based (e.g., "contains", "equals") and date-based predicates (e.g., "older than N days")
+- 📨 **Multiple Actions** — Mark emails as read/unread, move them to labels, and more
+- 🏗️ **Extensible Architecture** — Easily add new providers, condition types, and actions
+- 🧪 **Comprehensive Tests**
 
-📥 Email Fetching — Fetch emails from Gmail and store them in a relational database
+## 🛠️ Tech Stack
 
-⚙️ Rule-Based Processing — Apply custom rules defined in JSON format
+- **Python 3**
+- **SQLAlchemy** — ORM for database operations
+- **Gmail API** (via google-api-python-client)
+- **pytest** — for testing
 
-🧩 Flexible Conditions — Supports string-based (e.g., “contains”, “equals”) and date-based predicates (e.g., “older than N days”)
-
-📨 Multiple Actions — Mark emails as read/unread, move them to labels, and more
-
-🏗️ Extensible Architecture — Easily add new providers, condition types, and actions
-
-🧪 Comprehensive Tests 
-
-🛠️ Tech Stack
-
-Python 3
-
-SQLAlchemy — ORM for database operations
-
-Gmail API (via google-api-python-client)
-
-pytest — for testing
-
-
-Project structure
-
+## 📁 Project Structure
+```
 email-rule-processor/
 ├── src/
 │   ├── fetch_emails.py             # Script 1: Fetch emails from Gmail
@@ -69,7 +59,7 @@ email-rule-processor/
 │       │   └── conftest.py         # Shared test fixtures
 ├── .gitignore                      # Ignore secrets and temp files
 └── README.md
-
+```
 
    
  
