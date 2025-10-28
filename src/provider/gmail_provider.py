@@ -123,7 +123,6 @@ class GmailProvider(EmailProvider):
         except Exception:
             received_date = datetime.now()
 
-        body = self._extract_body(raw_email['payload'])
         is_read = 'UNREAD' not in raw_email.get('labelIds', [])
         labels = raw_email.get('labelIds', [])
 
@@ -137,22 +136,6 @@ class GmailProvider(EmailProvider):
             'is_read': is_read,
             'labels': labels
         }
-
-    def _extract_body(self, payload: Dict) -> str:
-        body = ""
-
-        if 'body' in payload and 'data' in payload['body']:
-            body = base64.urlsafe_b64decode(payload['body']['data']).decode('utf-8', errors='ignore')
-        elif 'parts' in payload:
-            for part in payload['parts']:
-                if part['mimeType'] == 'text/plain' and 'data' in part['body']:
-                    body += base64.urlsafe_b64decode(part['body']['data']).decode('utf-8', errors='ignore')
-                elif part['mimeType'] == 'text/html' and not body and 'data' in part['body']:
-                    body = base64.urlsafe_b64decode(part['body']['data']).decode('utf-8', errors='ignore')
-                elif 'parts' in part:
-                    body += self._extract_body(part)
-
-        return body.strip()
 
     def mark_as_read(self, email_id: str) -> bool:
         if not self.service:
